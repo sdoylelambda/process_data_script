@@ -1,0 +1,54 @@
+Understand - Pulls data from two CSV files and one JSON and returns a CSV Report summary with the sales
+data cleaned, normalized, and enriched.
+
+Accept input file paths or endpoints as command-line arguments or prompt the user for them
+during script run.
+
+- Read the raw CSV sales data.
+- Read the raw JSON product information.
+- Clean, normalize, and enrich the sales data.
+- Generate and output a summary report.
+
+Design one or more modules that separate concerns (e.g., one for data ingestion, one for
+processing, and one for enrichment).
+
+- Error handling
+    - handling of data issues (missing values, incorrect formats, etc.).
+- Add test cases
+
+- Include instructions - use 1 README.txt and or .md
+
+- Organize solution in a Git repository or a compressed folder.
+
+
+- EXPECTED OUTPUT:
+The final output must be a CSV file named `aggregated_report.csv` that summarizes the
+processed data by product category. The CSV file **must** include the following columns in the
+exact order specified:
+1. **category**
+- **Data Type:** String
+- **Description:** The product category as provided by the product data.
+- **Example:** `Gadgets`
+2. **total_sales**
+- **Data Type:** Numeric (float, with two decimal precision)
+- **Description:** The total sale amount for all transactions within the category.
+- **Example:** `375.00`
+3. **total_transactions**
+- **Data Type:** Integer
+- **Description:** The total number of transactions contributing to the category's sales.
+- **Example:** `6`
+4. **average_transaction_value**
+- **Data Type:** Numeric (float, with two decimal precision)
+- **Description:** The average sale amount per transaction, calculated as `total_sales /
+total_transactions`.
+- **Example:** `62.50`
+5. **total_quantity**
+- **Data Type:** Integer
+- **Description:** The cumulative number of product units sold in the category.
+- **Example:** `14`
+
+Plan -
+
+Execute -
+
+Revise - Change Python 3.12 -> 3.11

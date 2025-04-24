@@ -1,0 +1,20 @@
+### 3. Aggregated Report CSV (`aggregated_report.csv`)
+```csv
+category,total_sales,total_transactions,average_transaction_value,total_quantity
+Gadgets,375.00,6,62.50,14
+Tools,165.00,3,55.00,6
+```
+**Explanation of the Aggregated Report Calculation:**
+- **Gadgets:**
+- **Transactions:** TX001 (P001), TX002 (P002), TX005 (P001), TX006 (P005), TX008
+(P002), TX010 (P005)
+- **Total Sales:** 40.00 + 25.00 + 20.00 + 150.00 + 50.00 + 90.00 = 375.00
+- **Total Transactions:** 6
+- **Average Transaction Value:** 375.00 / 6 ≈ 62.50
+- **Total Quantity:** 2 + 1 + 1 + 5 + 2 + 3 = 14
+- **Tools:**
+- **Transactions:** TX003 (P003), TX004 (P004), TX009 (P004)
+- **Total Sales:** 45.00 + 80.00 + 40.00 = 165.00
+- **Total Transactions:** 3
+- **Average Transaction Value:** 165.00 / 3 = 55.00
+- **Total Quantity:** 3 + 2 + 1 = 6
