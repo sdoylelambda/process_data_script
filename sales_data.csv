@@ -1,4 +1,3 @@
-```csv
 date,transaction_id,product_id,quantity,sale_amount
 2023-03-01,TX001,P001,2,40.00
 2023-03-01,TX002,P002,1,25.00
@@ -10,4 +9,3 @@ date,transaction_id,product_id,quantity,sale_amount
 03/04/2023,TX008,P002,2,50.00
 2023-03-04,TX009,P004,1,40.00
 2023-03-04,TX010,P005,3,90.00
-```

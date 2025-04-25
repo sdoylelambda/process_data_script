@@ -104,4 +104,8 @@ total_transactions`.
 Revise -
     [] - Change Python 3.12 -> 3.11
     [] - Refactor imports
-    [] - Decide if json and csvs should load elsewhere
+    [] - Decide if json and csv should load elsewhere
+    [] - __init__
+    [] - user questions to start program
+    [] - Unit tests
+    [] - fix flow - maybe add another file
