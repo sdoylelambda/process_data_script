@@ -101,4 +101,7 @@ total_transactions`.
 
 
 
-Revise - Change Python 3.12 -> 3.11
+Revise -
+    [] - Change Python 3.12 -> 3.11
+    [] - Refactor imports
+    [] - Decide if json and csvs should load elsewhere
