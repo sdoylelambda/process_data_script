@@ -104,8 +104,11 @@ total_transactions`.
 Revise -
     [] - Change Python 3.12 -> 3.11
     [] - Refactor imports
-    [] - Decide if json and csv should load elsewhere
+    [] - Decide if json and csv should load elsewhere - y - ingestion :D
     [] - __init__
     [] - user questions to start program
-    [] - Unit tests
+    [*] - Unit tests
     [] - fix flow - maybe add another file
+    [*] - getting output formatted correctly - numbers seem to be off - verify if they are or the example is off
+    [] sale amount on updated csv showing 1 decimal - update to 2 decimals
+    [] use classes
