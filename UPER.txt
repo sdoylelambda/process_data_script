@@ -1,4 +1,6 @@
-Understand - Pulls data from two CSV files and one JSON and returns a CSV Report summary with the sales
+Understand -
+
+- Pulls data from two CSV files and one JSON and returns a CSV Report summary with the sales
 data cleaned, normalized, and enriched.
 
 Accept input file paths or endpoints as command-line arguments or prompt the user for them
@@ -38,25 +40,24 @@ consistency.
 metrics.
 
 
-
 Execute -
 
-[] - Get data from sales csv
-[] - Get json data
-[] - Clean sales data
-    [] - handling missing values
-    [] - correcting data types
-    []  - ensure consistency
+[x] - Get data from sales csv
+[x] - Get json data
+[x] - Clean sales data
+    [x] - handling missing values
+    [x] - correcting data types
+    [x]  - ensure consistency
 
-[] - Normalize the data
-    [] - standardizing date formats
-    [] - product codes
-    [] - etc.
+[x] - Normalize the data
+    [x] - standardizing date formats
+    [x] - product codes
+    [?] - etc.
 
-[] - Enrich the sales data by merging it with product information using product IDs as keys.
-    [] - Handle any discrepancies or conflicts in the data.
+[x] - Enrich the sales data by merging it with product information using product IDs as keys.
+    [x] - Handle any discrepancies or conflicts in the data.
 
-[] - Output data to `aggregated_report.csv`
+[x] - Output data to `aggregated_report.csv`
 
 - EXPECTED OUTPUT:
 The final output must be a CSV file named `aggregated_report.csv` that summarizes the
@@ -100,15 +101,13 @@ total_transactions`.
 - **Total Quantity:** 3 + 2 + 1 = 6
 
 
-
 Revise -
     [] - Change Python 3.12 -> 3.11
-    [] - Refactor imports
-    [] - Decide if json and csv should load elsewhere - y - ingestion :D
+    [x] - Refactor imports
     [] - __init__
     [] - user questions to start program
     [*] - Unit tests
-    [] - fix flow - maybe add another file
-    [*] - getting output formatted correctly - numbers seem to be off - verify if they are or the example is off
-    [] sale amount on updated csv showing 1 decimal - update to 2 decimals
+    [] - fix flow -
+    [x] - getting output formatted correctly - numbers seem to be off - verify if they are or the example is off
+    [x] sale amount on updated csv showing 1 decimal - update to 2 decimals
     [] use classes

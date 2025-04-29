@@ -1,81 +1,59 @@
 import pandas as pd
+import json
 from Library.data_ingestion import DataIngestion
 from Library.data_processing import data_processing
-import json
 
 
 def process_data():
-    # user_input = input("Do you want to play a game?")
-    #
-    # print(user_input)
+    user_input = input("Press 'Y' to create? ")
 
-    ingestion = DataIngestion()
+    if user_input.upper() != 'Y':
+        print("Exiting process.")
+        return
 
-    # Update self.sales_data
-    sales_data = ingestion.load_sales_data('sales_data.csv')
-    product_data_loaded = ingestion.load_product_data('product_data.json')
+    # Load product data
+    with open('product_data.json', 'r') as f:
+        product_list = json.load(f)
 
-    data_processing(product_data_loaded)
+    data_processing(product_list)
 
-    # data_enrichment.data_enrichment()  --> call here (Not from processing, move date validation first)
+    product_data = {item["product_id"]: item["category"] for item in product_list}
 
+    # Load sales data
+    sales_df = pd.read_csv('sales_data.csv')  # <-- Use the correct CSV
 
-# Assemble Final Output
+    # Map category from product data
+    sales_df['category'] = sales_df['product_id'].map(product_data)
 
-# [] - Move to enrichment
+    # Drop rows where product_id or category is missing
+    sales_df = sales_df.dropna(subset=['product_id', 'category'])
 
-# Load JSON list and convert to dict
-with open('product_data.json', 'r') as json_file:
-    product_list = json.load(json_file)
+    # Group by category
+    final_agg = sales_df.groupby('category').agg(
+        total_sales=('sale_amount', 'sum'),
+        total_transactions=('transaction_id', 'nunique'),  # Count unique transactions
+        total_quantity=('quantity', 'sum')
+    ).reset_index()
 
-# Convert list of dicts to {product_id: category}
-product_data = {item["product_id"]: item["category"] for item in product_list}
+    # Calculate average transaction value
+    final_agg['average_transaction_value'] = final_agg['total_sales'] / final_agg['total_transactions']
 
-# Load sales CSV
-sales_df = pd.read_csv('data_ingestion_date_updated.csv')  # Must contain: product_id, sale_amount, quantity
+    # Round the numbers
+    final_agg['total_sales'] = final_agg['total_sales'].round(2)
+    final_agg['average_transaction_value'] = final_agg['average_transaction_value'].round(2)
 
-# Map category into sales_df
-sales_df['category'] = sales_df['product_id'].map(product_data)
+    # Reorder columns
+    final_agg = final_agg[
+        ['category', 'total_sales', 'total_transactions', 'average_transaction_value', 'total_quantity']
+    ]
 
-# Now group by product_id and category
-product_agg = sales_df.groupby(['product_id', 'category']).agg(
-    total_sales=('sale_amount', 'sum'),
-    total_quantity=('quantity', 'sum')
-).reset_index()
+    # Sort by category
+    final_agg = final_agg.sort_values('category')
 
-# For products: total_transactions = total_quantity (i.e., number of units sold)
+    # Save to CSV
+    final_agg.to_csv('aggregated_report.csv', index=False)
 
-# UPDATE --->
-
-product_agg['total_transactions'] = product_agg['total_quantity']
-
-# Now group by category
-final_agg = product_agg.groupby('category').agg(
-    total_sales=('total_sales', 'sum'),
-    total_transactions=('total_transactions', 'sum'),
-    total_quantity=('total_quantity', 'sum')
-).reset_index()
-
-# Calculate average_transaction_value
-final_agg['average_transaction_value'] = final_agg['total_sales'] / final_agg['total_transactions']
-
-# Round numeric columns
-final_agg['total_sales'] = final_agg['total_sales'].round(2)
-final_agg['average_transaction_value'] = final_agg['average_transaction_value'].round(2)
-
-# Reorder columns
-final_agg = final_agg[
-    ['category', 'total_sales', 'total_transactions', 'average_transaction_value', 'total_quantity']
-]
-
-# Sort alphabetically by category
-final_agg = final_agg.sort_values(by='category')
-
-# Save to CSV
-output_filename = 'aggregated_report.csv'
-final_agg.to_csv(output_filename, index=False)
-
-print(f"CSV file '{output_filename}' has been created and sorted alphabetically by category.")
+    print(f"CSV file 'aggregated_report.csv' has been created and sorted alphabetically by category.")
 
 
 process_data()

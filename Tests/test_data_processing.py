@@ -2,7 +2,6 @@ import pandas as pd
 import pytest
 
 
-# Assume your main processing function looks like this:
 def process_sales_data(sales_df, product_list):
     # Map product_id -> category
     product_data = {item["product_id"]: item["category"] for item in product_list}
@@ -33,7 +32,6 @@ def process_sales_data(sales_df, product_list):
     return final_agg
 
 
-# Now the actual test
 def test_process_sales_data():
     # Mock sales data
     sales_data = pd.DataFrame({
