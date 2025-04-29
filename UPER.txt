@@ -1,0 +1,113 @@
+Understand -
+
+- Pulls data from two CSV files and one JSON and returns a CSV Report summary with the sales
+data cleaned, normalized, and enriched.
+
+Accept input file paths or endpoints as command-line arguments or prompt the user for them
+during script run.
+
+- Read the raw CSV sales data.
+- Read the raw JSON product information.
+- Clean, normalize, and enrich the sales data.
+- Generate and output a summary report.
+
+Design one or more modules that separate concerns (e.g., one for data ingestion, one for
+processing, and one for enrichment).
+
+- Error handling
+    - handling of data issues (missing values, incorrect formats, dates, etc.).
+- Add test cases
+
+- Include instructions - use 1 README.txt and or .md
+
+- Organize solution in a Git repository or a compressed folder.
+
+
+Plan -
+
+1. **Data Ingestion:**
+- Read raw sales data from a CSV file.
+- Fetch product details from a JSON API (the static JSON file provided is meant to represent
+the API, building an API is unnecessary).
+2. **Data Processing:**
+- Clean the sales data by handling missing values, correcting data types, and ensuring
+consistency.
+- Normalize the data (e.g., standardizing date formats, product codes, etc.).
+- Enrich the sales data by merging it with product information using product IDs as keys.
+- Handle any discrepancies or conflicts in the data.
+3. **Output:**
+- Produce an output report in a specified format (e.g. a new CSV file) that aggregates key
+metrics.
+
+
+Execute -
+
+[x] - Get data from sales csv
+[x] - Get json data
+[x] - Clean sales data
+    [x] - handling missing values
+    [x] - correcting data types
+    [x]  - ensure consistency
+
+[x] - Normalize the data
+    [x] - standardizing date formats
+    [x] - product codes
+    [?] - etc.
+
+[x] - Enrich the sales data by merging it with product information using product IDs as keys.
+    [x] - Handle any discrepancies or conflicts in the data.
+
+[x] - Output data to `aggregated_report.csv`
+
+- EXPECTED OUTPUT:
+The final output must be a CSV file named `aggregated_report.csv` that summarizes the
+processed data by product category. The CSV file **must** include the following columns in the
+exact order specified:
+1. **category**
+- **Data Type:** String
+- **Description:** The product category as provided by the product data.
+- **Example:** `Gadgets`
+2. **total_sales**
+- **Data Type:** Numeric (float, with two decimal precision)
+- **Description:** The total sale amount for all transactions within the category.
+- **Example:** `375.00`
+3. **total_transactions**
+- **Data Type:** Integer
+- **Description:** The total number of transactions contributing to the category's sales.
+- **Example:** `6`
+4. **average_transaction_value**
+- **Data Type:** Numeric (float, with two decimal precision)
+- **Description:** The average sale amount per transaction, calculated as `total_sales /
+total_transactions`.
+- **Example:** `62.50`
+5. **total_quantity**
+- **Data Type:** Integer
+- **Description:** The cumulative number of product units sold in the category.
+- **Example:** `14`
+
+**Explanation of the Aggregated Report Calculation:**
+- **Gadgets:**
+- **Transactions:** TX001 (P001), TX002 (P002), TX005 (P001), TX006 (P005), TX008
+(P002), TX010 (P005)
+- **Total Sales:** 40.00 + 25.00 + 20.00 + 150.00 + 50.00 + 90.00 = 375.00
+- **Total Transactions:** 6
+- **Average Transaction Value:** 375.00 / 6 ≈ 62.50
+- **Total Quantity:** 2 + 1 + 1 + 5 + 2 + 3 = 14
+- **Tools:**
+- **Transactions:** TX003 (P003), TX004 (P004), TX009 (P004)
+- **Total Sales:** 45.00 + 80.00 + 40.00 = 165.00
+- **Total Transactions:** 3
+- **Average Transaction Value:** 165.00 / 3 = 55.00
+- **Total Quantity:** 3 + 2 + 1 = 6
+
+
+Revise -
+    [] - Change Python 3.12 -> 3.11
+    [x] - Refactor imports
+    [] - __init__
+    [] - user questions to start program
+    [*] - Unit tests
+    [] - fix flow -
+    [x] - getting output formatted correctly - numbers seem to be off - verify if they are or the example is off
+    [x] sale amount on updated csv showing 1 decimal - update to 2 decimals
+    [] use classes
