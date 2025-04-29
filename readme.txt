@@ -10,8 +10,6 @@ Press 'Y' to proceed if data correct
 
 STEP 4
 View created file aggregated_report.csv in root
-- From the examples, the first is incorrect, the second is correct.
-- Will add more unit tests/review code to determine this.
 
 Tests
 Run pytest root folder in bash after pip installing pytest.
